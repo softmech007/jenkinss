@@ -1,0 +1,34 @@
+JAVA_HOME = /usr/lib/jvm/java-11-openjdk-amd64
+
+MAVEN_HOME = /opt/maven
+
+JENKINS_HOME = /var/lib/jenkins
+
+1. Enter an item name :compile  Repository URL - Build :Invoke top label Maven targets - Goals: compile
+
+2. Enter an item name :codereview - Repository URL - Build: Invoke top label Maven targets - Goals: -P metrics pmd:pmd - Post Build actions : Record compiler 
+warnings and static analysis results - Tool:PMD - Report file pattern: **/pmd.xml
+
+install Plugin :Warning Next Generation
+
+3. Enter an item name :unittest - Repository URL - Build: Invoke top label Maven targets - Goals: test - Post Build actions : Publish Junit test result report - 
+Test report XMLs: target/surefire-reports/*.xml
+
+4.Enter an item name :codecoverege - Repository URL - Build: Invoke top label Maven targets - Goals: cobertura:cobertura -Dcobertura.report.format.xml - 
+Post Build actions : Publish cobertura coverage report - Cobertura xml report pattern :target/site/cobertura/coverage.xml.... mvn cobertura:cobertura -Dcobertura.report.format=xml
+
+install Plugin :cobertura 
+
+5. Enter an item name :package  Repository URL - Build :Invoke top label Maven targets - Goals: package
+
+https://github.com/lerndevops/PetClinic
+
+How to automate the above steps?  
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+poll SCM 
+
+
+34.125.71.119
+https://help.edureka.co/support
